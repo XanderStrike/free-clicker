@@ -2,7 +2,7 @@
 
 #####FreeClicker is a free, open source, web based, bring your own device iClicker.
 
-FreeClicker is currently in development. Please don't use it at this stage unless you're familiar with ruby on rails programming.
+FreeClicker is currently in development. Please don't use it at this stage unless you're familiar with ruby on rails and programming in general.
 
 ##features
 
