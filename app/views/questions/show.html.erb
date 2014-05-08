@@ -22,9 +22,11 @@
 <% if @question.active %>
   <h3>This question is open!</h3>
   <%= link_to 'Close', '?post=close', class: 'button' %>
+  <span id="num-responses"><%= @question.responses.count %></span>
+  <br><br>
 <% end %>
 
-<a onclick="$('#results').toggle()">Show Results</a>
+<a onclick="$('#results').toggle()">Show Results</a> | <a href='/responses/clear/<%= @question.id %>' data-remote="true">Clear Results</a>
 
 <div id="results" style="display:none">
   <div id="results-chart"></div>
@@ -32,11 +34,11 @@
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
+  // google chart stuff
   google.load('visualization', '1.0', {'packages':['corechart']});
   google.setOnLoadCallback(drawCharts);
 
   function drawCharts() {
-    // user bar chart
     var userData = new google.visualization.DataTable();
     userData.addColumn('string', 'Letter');
     userData.addColumn('number', '');
@@ -55,4 +57,12 @@
     var chart = new google.visualization.BarChart(document.getElementById('results-chart'));
     chart.draw(userData, options);
   }
+
+  // responses counter
+  var count_checker = window.setInterval(function() {
+    $.getJSON('/responses/count/<%= @question.id %>.json', function(data) {
+      $('#num-responses').html(data)
+      console.log(data);
+    });
+  }, 1000);
 </script>
