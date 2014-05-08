@@ -1,0 +1,14 @@
+<h1>FreeClicker</h1>
+
+<p>Please wait for the professor to put up the next question.</p>
+
+<script>
+  var checker = window.setInterval(function() {
+    $.getJSON('/questions/current.json', function(data) {
+      if (data) {
+        location.reload();
+      }
+      console.log(data);
+    });
+  }, 1000);
+</script>

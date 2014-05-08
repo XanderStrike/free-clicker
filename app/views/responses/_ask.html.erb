@@ -1,0 +1,14 @@
+<h2><%= @question.text %></h2>
+
+<% @question.answers.each do |a| %>
+  <% unless a.text.blank? %>
+    <div class="row">
+      <div class="medium-2 columns">
+        <%= button_to a.letter, responses_path(question_id: @question.id, letter: a.letter, ip: request.remote_ip, :method => :post), class: 'small button expand' %>
+      </div>
+      <div class="medium-10 columns show-for-medium-up">
+        <p><%= a.text %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

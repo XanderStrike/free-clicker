@@ -1,0 +1,28 @@
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h4>Question</h4>
+  <%= f.text_field :text, placeholder: 'What is the air-speed velocity of an unladen swallow?', required: true %>
+
+  <h4>Answers</h4>
+
+  <% i = 0 %>
+  <%= f.fields_for :answers do |builder| %>
+    <%= render "answers/answer_fields", f: builder, n: i %>
+    <% i += 1 %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit class: 'button' %>
+  </div>
+<% end %>

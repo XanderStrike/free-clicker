@@ -25,13 +25,11 @@ FreeClicker is currently in development. Please don't use it at this stage unles
 
 * has_many: :answers
 * has_many: :responses
-* id
 * text
 
 ###answers
 
 * belongs_to: :question
-* id
 * question_id
 * text
 * letter

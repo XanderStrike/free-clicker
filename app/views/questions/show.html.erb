@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @question.text %></h1>
+
+<table>
+  <% @question.answers.each do |a| %>
+    <% unless a.text.blank? %>
+      <tr>
+        <th style="font-size:20px"><%= a.letter %></th>
+        <td style="font-size:20px"><%= a.text %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<%= link_to 'Open', '?post=true' %> | 
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
+<br>
+<br>
+
+<% if @question.active %>
+  <h3>This question is open!</h3>
+  <%= link_to 'Close', '?post=close', class: 'button' %>
+<% end %>
+
+<a onclick="$('#results').toggle()">Show Results</a>
+
+<div id="results" style="display:none">
+  <div id="results-chart"></div>
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1.0', {'packages':['corechart']});
+  google.setOnLoadCallback(drawCharts);
+
+  function drawCharts() {
+    // user bar chart
+    var userData = new google.visualization.DataTable();
+    userData.addColumn('string', 'Letter');
+    userData.addColumn('number', '');
+    userData.addRows([
+      ['A', <%= @results['A'] %>],
+      ['B', <%= @results['B'] %>],
+      ['C', <%= @results['C'] %>],
+      ['D', <%= @results['D'] %>],
+      ['E', <%= @results['E'] %>],
+    ]);
+    var options = {title:'Results',
+                   width:1000,
+                   height:300,
+                   backgroundColor: 'transparent',
+                   legend: {position: 'none'}};
+    var chart = new google.visualization.BarChart(document.getElementById('results-chart'));
+    chart.draw(userData, options);
+  }
+</script>

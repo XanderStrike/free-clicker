@@ -1,0 +1,9 @@
+<div class="row collapse">
+  <div class="small-3 large-2 columns">
+    <span class="prefix"><%= ('A'..'Z').to_a[n] %></span>
+  </div>
+  <div class="small-9 large-10 columns">
+    <%= f.text_field :text, placeholder: 'What do you mean? An African or European swallow?' %>
+    <%= f.hidden_field :letter, value: ('A'..'Z').to_a[n] %>
+  </div>
+</div>

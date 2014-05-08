@@ -1,0 +1,7 @@
+<div id="response-area">
+  <% if @question.nil? || !@question.responses.where(ip: request.remote_ip).first.nil? %>
+    <%= render partial: 'wait' %>
+  <% else %>
+    <%= render partial: 'ask' %>
+  <% end %>
+</div>
