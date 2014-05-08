@@ -5,7 +5,7 @@ Freeclicker::Application.routes.draw do
   resources :answers
 
 
-  get '/questions/current' #, to: 'questions#current'
+  get '/questions/current'
   resources :questions
 
   root to: "responses#index"

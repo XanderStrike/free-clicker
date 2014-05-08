@@ -9,33 +9,36 @@ FreeClicker is currently in development. Please don't use it at this stage unles
 ###teachers
 
     [ ] Can log in
-    [ ] Can create questions
-    [ ] Can create answers to questions
-    [ ] Can open questions for answers
+    [*] Can create questions
+    [*] Can create answers to questions
+    [*] Can open questions for answers
+    [*] Can view question results
     [ ] Can view question results in real time
-    [ ] Can close questions
+    [*] Can close questions
 
 ###students
 
-    [ ] Can answer questions after they've been posted
+    [*] Can answer questions exactly once after they've been posted
 
 ##models
 
 ###questions
 
-* has_many: :answers
-* has_many: :responses
-* text
+* has_many :answers
+* has_many :responses
+* text:text
+* active:bool
 
 ###answers
 
-* belongs_to: :question
-* question_id
-* text
-* letter
+* belongs_to :question
+* question_id:int
+* text:text
+* letter:text
 
 ###responses
 
-* belongs_to: :question
-* question_id
-* letter
+* belongs_to :question
+* question_id:int
+* letter:text
+* ip:text
